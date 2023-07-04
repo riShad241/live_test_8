@@ -21,6 +21,7 @@ class MyHome extends StatefulWidget {
 }
 
 class _MyHomeState extends State<MyHome> {
+  int _tilecolor = -1;
  final List<Contant> contants =[
     Contant(names: 'Maruf hasan', email: 'Maruf@gmail.com', phone: '01760381225'),
     Contant(names: 'Rakibul islam', email: 'Rakib@gmail.com', phone: '01760381225'),
@@ -37,17 +38,21 @@ class _MyHomeState extends State<MyHome> {
           itemCount: contants.length,
           itemBuilder: (context, index){
             return  ListTile(
+
               title: Text(contants[index].names),
               onTap: (){
-                showBottomSheet(context: context, builder: (context){
+
+                showModalBottomSheet(context: context, builder: (context){
                   return Container(
+                    height: 200,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Contact Details',style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
+                          Text('Contact Details',style: TextStyle(fontSize: 25,
+                              fontWeight: FontWeight.bold),),
 
                           SizedBox(height: 10,),
                           Text('Name: ${contants[index].names}'),
@@ -58,11 +63,13 @@ class _MyHomeState extends State<MyHome> {
                     ),
                   );
                 });
+
               },
             );
           }),
     );
   }
+
 }
 class Contant{
  final String names;
